@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin — BuildCraft</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- LOGIN OVERLAY -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-card">
+    <div class="login-logo"><i class="fas fa-hard-hat"></i> Build<span>Craft</span></div>
+    <h2>Admin Panel</h2>
+    <p>Sign in to manage your construction website</p>
+    <input type="email" id="loginEmail" placeholder="Email"/>
+    <input type="password" id="loginPass" placeholder="Password"/>
+    <button onclick="doLogin()" class="btn-login">Sign In</button>
+  </div>
+</div>
+
+<!-- ADMIN LAYOUT -->
+<div class="admin-layout" id="adminLayout" style="display:none">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo"><i class="fas fa-hard-hat"></i> Build<span>Craft</span></div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-tab="dashboard"><i class="fas fa-chart-bar"></i> Dashboard</a>
+      <a href="#" class="nav-item" data-tab="enquiries"><i class="fas fa-envelope"></i> Enquiries <span class="badge" id="enquiryBadge">0</span></a>
+      <a href="#" class="nav-item" data-tab="projects"><i class="fas fa-hard-hat"></i> Projects</a>
+      <a href="#" class="nav-item" data-tab="services"><i class="fas fa-cogs"></i> Services</a>
+      <a href="#" class="nav-item" data-tab="reviews"><i class="fas fa-star"></i> Reviews <span class="badge" id="reviewBadge">0</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="index.html" class="nav-item"><i class="fas fa-external-link-alt"></i> View Site</a>
+      <a href="#" class="nav-item" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="admin-main">
+    <header class="admin-header">
+      <h1 id="pageTitle">Dashboard</h1>
+      <div class="admin-user"><i class="fas fa-user-circle"></i> Admin</div>
+    </header>
+
+    <!-- DASHBOARD TAB -->
+    <div class="tab-content active" id="tab-dashboard">
+      <div class="stat-cards">
+        <div class="stat-card orange"><i class="fas fa-envelope"></i><div><span id="statEnquiries">0</span><p>Total Enquiries</p></div></div>
+        <div class="stat-card blue"><i class="fas fa-hard-hat"></i><div><span id="statProjects">0</span><p>Projects</p></div></div>
+        <div class="stat-card green"><i class="fas fa-cogs"></i><div><span id="statServices">0</span><p>Services</p></div></div>
+        <div class="stat-card red"><i class="fas fa-clock"></i><div><span id="statPending">0</span><p>Pending Enquiries</p></div></div>
+      </div>
+      <div class="recent-enquiries">
+        <div class="card-header"><h3>Recent Enquiries</h3></div>
+        <table class="data-table" id="recentTable">
+          <thead><tr><th>Name</th><th>Service</th><th>Phone</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody id="recentBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ENQUIRIES TAB -->
+    <div class="tab-content" id="tab-enquiries">
+      <div class="tab-actions">
+        <h2>All Enquiries</h2>
+        <button class="btn-danger" onclick="clearEnquiries()"><i class="fas fa-trash"></i> Clear All</button>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Service</th><th>Message</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody id="enquiriesBody"></tbody>
+      </table>
+    </div>
+
+    <!-- PROJECTS TAB -->
+    <div class="tab-content" id="tab-projects">
+      <div class="tab-actions">
+        <h2>Manage Projects</h2>
+        <button class="btn-primary" onclick="openProjectModal()"><i class="fas fa-plus"></i> Add Project</button>
+      </div>
+      <div class="cards-grid" id="projectsAdmin"></div>
+    </div>
+
+    <!-- SERVICES TAB -->
+    <div class="tab-content" id="tab-services">
+      <div class="tab-actions">
+        <h2>Manage Services</h2>
+        <button class="btn-primary" onclick="openServiceModal()"><i class="fas fa-plus"></i> Add Service</button>
+      </div>
+      <div class="cards-grid" id="servicesAdmin"></div>
+    </div>
+    <!-- REVIEWS TAB -->
+    <div class="tab-content" id="tab-reviews">
+      <div class="tab-actions">
+        <h2>Manage Reviews</h2>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Name</th><th>Role</th><th>Review</th><th>Rating</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody id="reviewsBody"></tbody>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+<!-- PROJECT MODAL -->
+<div class="modal-overlay" id="projectModal">
+  <div class="modal">
+    <div class="modal-header"><h3 id="projectModalTitle">Add Project</h3><button onclick="closeModal('projectModal')">×</button></div>
+    <form id="projectForm">
+      <input type="hidden" id="projectId"/>
+      <input type="text" id="projectTitle" placeholder="Project Title *" required/>
+      <select id="projectCategory" required>
+        <option value="">Select Category</option>
+        <option value="residential">Residential</option>
+        <option value="commercial">Commercial</option>
+        <option value="industrial">Industrial</option>
+      </select>
+      <input type="text" id="projectLocation" placeholder="Location"/>
+      <input type="url" id="projectImage" placeholder="Image URL *" required/>
+      <textarea id="projectDesc" placeholder="Description" rows="3"></textarea>
+      <div class="modal-actions">
+        <button type="button" onclick="closeModal('projectModal')" class="btn-secondary">Cancel</button>
+        <button type="submit" class="btn-primary">Save Project</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- SERVICE MODAL -->
+<div class="modal-overlay" id="serviceModal">
+  <div class="modal">
+    <div class="modal-header"><h3 id="serviceModalTitle">Add Service</h3><button onclick="closeModal('serviceModal')">×</button></div>
+    <form id="serviceForm">
+      <input type="hidden" id="serviceId"/>
+      <input type="text" id="serviceTitle" placeholder="Service Title *" required/>
+      <input type="text" id="serviceIcon" placeholder="FontAwesome Icon (e.g. fas fa-home) *" required/>
+      <textarea id="serviceDesc" placeholder="Description *" rows="3" required></textarea>
+      <div class="modal-actions">
+        <button type="button" onclick="closeModal('serviceModal')" class="btn-secondary">Cancel</button>
+        <button type="submit" class="btn-primary">Save Service</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

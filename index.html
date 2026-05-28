@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BuildCraft Construction</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo">
+        <span class="logo-icon"><i class="fas fa-hard-hat"></i></span>
+        <span>Build<span class="accent">Craft</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="admin.html" class="btn-nav">Admin</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-tag">Excellence in Every Build</p>
+      <h1 class="hero-title">We Build<br/><span class="accent">Dreams</span><br/>Into Reality</h1>
+      <p class="hero-sub">Over 20 years of trusted construction expertise — residential, commercial, and industrial projects delivered on time.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Get Free Quote</a>
+        <a href="#projects" class="btn-secondary">Our Work</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="num" data-target="500">0</span><span>+</span><p>Projects Done</p></div>
+        <div class="stat"><span class="num" data-target="20">0</span><span>+</span><p>Years Exp.</p></div>
+        <div class="stat"><span class="num" data-target="350">0</span><span>+</span><p>Happy Clients</p></div>
+      </div>
+    </div>
+    <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-header">
+      <p class="section-tag">What We Do</p>
+      <h2>Our <span class="accent">Services</span></h2>
+      <p class="section-sub">Comprehensive construction solutions tailored to your vision</p>
+    </div>
+    <div class="services-grid" id="servicesGrid">
+      <!-- Dynamic from JS / backend -->
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <div class="section-header">
+      <p class="section-tag">Portfolio</p>
+      <h2>Featured <span class="accent">Projects</span></h2>
+      <p class="section-sub">A glimpse of the landmarks we've built</p>
+    </div>
+    <div class="filter-btns">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="residential">Residential</button>
+      <button class="filter-btn" data-filter="commercial">Commercial</button>
+      <button class="filter-btn" data-filter="industrial">Industrial</button>
+    </div>
+    <div class="projects-grid" id="projectsGrid">
+      <!-- Dynamic -->
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-img">
+      <div class="about-img-box">
+        <div class="about-img-inner"></div>
+        <div class="about-badge"><i class="fas fa-award"></i><span>ISO Certified</span></div>
+      </div>
+    </div>
+    <div class="about-content">
+      <p class="section-tag">About Us</p>
+      <h2>Building Tamil Nadu's <span class="accent">Future</span></h2>
+      <p>Since 2004, BuildCraft has been at the forefront of construction excellence across Tamil Nadu. From luxury villas to large-scale commercial complexes, our team of 300+ professionals brings precision and passion to every project.</p>
+      <ul class="about-list">
+        <li><i class="fas fa-check-circle"></i> Licensed & Fully Insured</li>
+        <li><i class="fas fa-check-circle"></i> On-Time Project Delivery</li>
+        <li><i class="fas fa-check-circle"></i> Transparent Cost Estimates</li>
+        <li><i class="fas fa-check-circle"></i> Post-Construction Support</li>
+      </ul>
+      <a href="#contact" class="btn-primary">Work With Us</a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-header">
+      <p class="section-tag">Testimonials</p>
+      <h2>Client <span class="accent">Voices</span></h2>
+    </div>
+    <div class="testimonials-track" id="testimonialsTrack">
+      <!-- Dynamic -->
+    </div>
+  </section>
+
+  <!-- REVIEW FORM -->
+  <section class="review-section" id="review">
+    <div class="section-header">
+      <p class="section-tag">Share Your Experience</p>
+      <h2>Leave a <span class="accent">Review</span></h2>
+      <p class="section-sub">Your feedback means a lot to us</p>
+    </div>
+    <form class="review-form" id="reviewForm">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your Name *" required />
+        <input type="text" name="role" placeholder="Your Role (e.g. Home Owner, Chennai)" required />
+      </div>
+      <div class="star-rating">
+        <p>Rating:</p>
+        <div class="stars" id="starRating">
+          <span data-val="1">★</span>
+          <span data-val="2">★</span>
+          <span data-val="3">★</span>
+          <span data-val="4">★</span>
+          <span data-val="5">★</span>
+        </div>
+        <input type="hidden" name="rating" id="ratingVal" value="5"/>
+      </div>
+      <textarea name="text" placeholder="Write your review *" rows="4" required></textarea>
+      <button type="submit" class="btn-primary">Submit Review <i class="fas fa-star"></i></button>
+      <div class="form-msg" id="reviewMsg"></div>
+    </form>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-header">
+      <p class="section-tag">Get In Touch</p>
+      <h2>Request a <span class="accent">Quote</span></h2>
+      <p class="section-sub">Fill the form — we'll respond within 24 hours</p>
+    </div>
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <div class="info-card"><i class="fas fa-map-marker-alt"></i><div><h4>Address</h4><p>police colony-annanagar,karaikudi,svg dis 630001</p></div></div>
+        <div class="info-card"><i class="fas fa-phone-alt"></i><div><h4>Phone</h4><p>+91 8682936577</p></div></div>
+        <div class="info-card"><i class="fas fa-envelope"></i><div><h4>Email</h4><p>info@buildcraft.in</p></div></div>
+        <div class="info-card"><i class="fas fa-clock"></i><div><h4>Hours</h4><p>Mon–Sat: 9AM – 6PM</p></div></div>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your Name *" required />
+          <input type="email" name="email" placeholder="Email Address *" required />
+        </div>
+        <div class="form-row">
+          <input type="tel" name="phone" placeholder="Phone Number *" required />
+          <select name="service" required>
+            <option value="">Select Service</option>
+            <option>Residential Construction</option>
+            <option>Commercial Construction</option>
+            <option>Renovation</option>
+            <option>Interior Design</option>
+            <option>Industrial Projects</option>
+          </select>
+        </div>
+        <textarea name="message" placeholder="Tell us about your project..." rows="4"></textarea>
+        <button type="submit" class="btn-primary">Send Enquiry <i class="fas fa-paper-plane"></i></button>
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon"><i class="fas fa-hard-hat"></i></span> Build<span class="accent">Craft</span></div>
+        <p>Building excellence across Tamil Nadu since 2004. Your vision, our craftsmanship.</p>
+        <div class="socials">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Residential</a></li>
+          <li><a href="#">Commercial</a></li>
+          <li><a href="#">Industrial</a></li>
+          <li><a href="#">Renovation</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Contact</h4>
+        <ul>
+          <li><i class="fas fa-phone"></i> +91 8682936577</li>
+          <li><i class="fas fa-envelope"></i> info@buildcraft.in</li>
+          <li><i class="fas fa-map-marker-alt"></i> karaikudi, TN</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2024 BuildCraft Construction. All rights reserved.</p></div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
